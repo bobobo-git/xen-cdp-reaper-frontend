@@ -1153,7 +1153,10 @@ void cdp_main_dialog::show_menu()
     {
         AlertWindow::showMessageBoxAsync(AlertWindow::InfoIcon,
                                          String("CDP Front-end (")+__DATE__+")",
-                                         "(c) 2014-2016 Xenakios Softwares\n http://xenakios.wordpress.com/\n\nWith thanks to Oli Larkin for the initial OS-X build\nhttp://www.olilarkin.co.uk/","OK",
+                                         "(c) 2014-2018 Xenakios Softwares\n http://xenakios.wordpress.com/\n\n"
+										 "With thanks to Oli Larkin for the initial OS-X build\nhttp://www.olilarkin.co.uk/"
+										 
+			,"OK",
                                          this);
     }
     else if (result == 6)
