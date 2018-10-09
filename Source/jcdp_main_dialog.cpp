@@ -1749,13 +1749,13 @@ String generate_cmd_argument(parameter_info& param,
     return String();
 }
 
-std::pair<StringArray, String> cdp_main_dialog::split_stereo_file(String fn, file_cleaner &cleaner)
+std::pair<StringArray, String> cdp_main_dialog::split_multichannel_file(String fn, audio_source_info info, file_cleaner& cleaner)
 {
     StringArray result;
     // housekeep chans 2 infile
     File helper_file(fn);
     File helper_directory=helper_file.getParentDirectory();
-    for (int i=0;i<2;++i)
+    for (int i=0;i<info.num_channels;++i)
     {
         String temp_fn=helper_directory.getFullPathName()+"/"+
                 helper_file.getFileNameWithoutExtension()+"_c"+String(i+1)+helper_file.getFileExtension();
@@ -1975,8 +1975,10 @@ void cdp_main_dialog::process_cdp()
 		}
 			
         StringArray infiles;
-        if (the_proc_info.m_mono_only==false)
-            infiles.add(infntouse);
+		if (the_proc_info.m_mono_only == false)
+		{
+			infiles.add(infntouse);
+		}
         else
         {
             if (info.num_channels==1)
@@ -1984,7 +1986,7 @@ void cdp_main_dialog::process_cdp()
             else
             {
                 Logger::writeToLog("Beginning split channels processing...");
-                auto split_result=split_stereo_file(infntouse,tempfilecleaner);
+                auto split_result=split_multichannel_file(infntouse,info,tempfilecleaner);
                 if (split_result.second.isEmpty()==true)
                 {
                     infiles.addArray(split_result.first);
@@ -2090,7 +2092,7 @@ void cdp_main_dialog::process_cdp()
             {
                 MessageManager::callAsync([this]()
                 {
-					m_status_label->setText("Error : CDP returned success but file or files were not created",dontSendNotification);
+					m_status_label->setText("Error : CDP returned success but a file or multiple files were not created",dontSendNotification);
 				});
                 return;
             }
@@ -2154,7 +2156,7 @@ void cdp_main_dialog::process_cdp()
                         return;
                     }
                 }
-                if (outfiles.size()==2)
+                if (info.num_channels>1 && outfiles.size()==info.num_channels)
                 {
                     double resynth_t0=Time::getMillisecondCounterHiRes();
                     auto resynth_result=do_pvoc_resynth(outfiles);

@@ -135,7 +135,7 @@ public:
     std::pair<String,String> cut_file(String infn, time_range trange, bool excise=false);
     String adjust_file_volume(String infn, double vol);
     String monoize_file(String infn);
-    std::pair<StringArray,String> split_stereo_file(String fn,file_cleaner& cleaner);
+    std::pair<StringArray,String> split_multichannel_file(String fn,audio_source_info info, file_cleaner& cleaner);
     std::pair<String,String> merge_split_files(StringArray infiles);
     std::pair<StringArray, String> do_pvoc_resynth(StringArray infiles);
 
