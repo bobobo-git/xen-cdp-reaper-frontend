@@ -16,7 +16,6 @@ along with CDP front-end.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <memory>
-//#include "C:/ProgrammingProjects/Projects/reaper-cdp-frontend-extension-plugin/cdp_frontend/JuceLibraryCode/AppConfig.h"
 #include "jcdp_main_dialog.h"
 #include "JuceHeader.h"
 
@@ -152,7 +151,9 @@ void check_and_fix_environment()
 
 File get_cdp_binaries_location(PropertiesFile* propfile)
 {
-    File cdpdir=File(propfile->getValue("general/cdp_bin_loc"));
+	const char* respath = GetResourcePath();
+	String path = String(CharPointer_UTF8(respath))+"/UserPlugins/cdprfe_bin";
+	File cdpdir=path;
     if (cdpdir.exists()==false)
     {
         FileChooser chooser("Choose CDP binaries location");

@@ -697,13 +697,13 @@ void cdp_main_dialog::init_param_components()
             int avail_horz=m_proc_listbox->getX()-10;
             if (getHeight()>500)
             {
-                int lab_top=m_output_waveform->getBottom()+5+i*20;
+                int lab_top=m_output_waveform->getBottom()+5+i*25;
                 return my_rectangle(5,lab_top,avail_horz,lab_top+15);
             } else
             {
                 int grid_x=i % 2;
                 int grid_y=i / 2;
-                int lab_top=m_output_waveform->getBottom()+5+grid_y*20;
+                int lab_top=m_output_waveform->getBottom()+5+grid_y*25;
                 int lab_left=5+avail_horz/2*grid_x;
                 return my_rectangle(lab_left,lab_top,lab_left+avail_horz/2,lab_top+15);
             }
