@@ -1749,7 +1749,8 @@ String generate_cmd_argument(parameter_info& param,
     return String();
 }
 
-std::pair<StringArray, String> cdp_main_dialog::split_multichannel_file(String fn, audio_source_info info, file_cleaner& cleaner)
+std::pair<StringArray, String> cdp_main_dialog::split_multichannel_file(String fn, 
+	audio_source_info info, file_cleaner& cleaner)
 {
     StringArray result;
     // housekeep chans 2 infile
