@@ -33,8 +33,10 @@
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="Builds/MacOSX">
       <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" defines="BUILD_CDP_FRONTEND_PLUGIN"/>
-        <CONFIGURATION isDebug="0" name="Release" defines="JUCE_REMOVE_COMPONENT_FROM_DESKTOP_ON_WM_DESTROY&#10;BUILD_CDP_FRONTEND_PLUGIN"/>
+        <CONFIGURATION isDebug="1" name="Debug" defines="BUILD_CDP_FRONTEND_PLUGIN"
+                       headerPath="/Users/teemu/codeprojects/cdp_reaper_frontend2018/Source/WDL/swell"/>
+        <CONFIGURATION isDebug="0" name="Release" defines="BUILD_CDP_FRONTEND_PLUGIN"
+                       linkTimeOptimisation="0" headerPath="Source/WDL/swell"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_audio_basics" path="../JUCE/modules"/>
@@ -91,6 +93,7 @@
   </MODULES>
   <LIVE_SETTINGS>
     <WINDOWS/>
+    <OSX/>
   </LIVE_SETTINGS>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1"/>
 </JUCERPROJECT>

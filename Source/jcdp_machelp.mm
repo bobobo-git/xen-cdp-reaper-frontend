@@ -5,7 +5,7 @@
 #undef Point
 #undef Component
 #undef MemoryBlock
-#include "juce/JuceLibraryCode/JuceHeader.h"
+#include "JuceHeader.h"
 
 void makeWindowFloatingPanel(Component *aComponent)
 {
